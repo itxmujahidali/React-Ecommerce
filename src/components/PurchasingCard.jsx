@@ -46,7 +46,7 @@ const PurchasingCard = () => {
                             <div className="input-group">
                                 <input type="text" className="form-control" placeholder="Promo code" />
                                 <div className="input-group-append">
-                                    <button type="submit" className="btn btn-secondary">Redeem</button>
+                                    <button type="submit" className="btn btn-secondary rounded-pill">Redeem</button>
                                 </div>
                             </div>
                         </div>
@@ -99,13 +99,30 @@ const PurchasingCard = () => {
                             <label for="address2">Address 2 <span className="text-muted">(Optional)</span></label>
                             <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" />
                         </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <label for="inputCity">City</label>
+                                <input type="text" class="form-control" id="inputCity"/>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="inputState">State</label>
+                                <select id="inputState" class="form-control">
+                                    <option selected>Choose...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="inputZip">Zip</label>
+                                <input type="text" class="form-control" id="inputZip"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div align='center' style={{marginBottom: "5%"}}>
+            <div align='center' style={{ marginBottom: "5%" }}>
                 <hr className="mb-4" />
                 <Link to={"/invoice"}>
-                <button className="btn btn-primary btn-lg btn-block" type="submit">Continue to billing</button>
+                    <button className="btn btn-primary btn-lg btn-block rounded-pill" type="submit">Continue to billing</button>
                 </Link>
             </div>
 

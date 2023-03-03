@@ -27,7 +27,7 @@ const MyOrders = () => {
                         <ul class="list-group mb-2">
                             <Link to={"/invoice"} style={{textDecoration: "none"}}>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="btn btn-outline-secondary"> Wumpale Bear NFT </span>    
+                                <span class="btn btn-outline-secondary rounded-pill"> Wumpale Bear NFT </span>    
                                     <span class="text-muted"> Rs/ 1499 </span>
                                     <span class="text-muted">Delivered</span>
                                     <div style={imageParent}>
@@ -38,7 +38,7 @@ const MyOrders = () => {
                         </ul><ul class="list-group mb-2">
                             <Link to={"/invoice"} style={{textDecoration: "none"}}>
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="btn btn-outline-secondary"> Facebook Metaverse</span>    
+                                <span class="btn btn-outline-secondary rounded-pill"> Facebook Metaverse</span>    
                                     <span class="text-muted"> Rs/ 1499 </span>
                                     <span class="text-muted">Delivered</span>
                                     <div style={imageParent}>
