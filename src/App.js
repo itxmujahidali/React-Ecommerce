@@ -8,7 +8,9 @@ import Footer from './components/Footer';
 import PurchasingCard from './components/PurchasingCard';
 import OrderInvoice from './components/OrderInvoice';
 import MyOrders from './components/MyOrders';
-import Contact from './components/Contact'
+import Contact from './components/Contact';
+import Login from './components/LoginSignUp/Login';
+import Signup from './components/LoginSignUp/Signup';
 
 let title = "Latest Products";
 let title2 = "Hot Products";
@@ -35,6 +37,10 @@ function App() {
           <Route exact path="/invoice" element={[<Navbar />, <OrderInvoice />]}> </Route>
           <Route exact path="/myorder" element={[<Navbar />, <MyOrders />]}> </Route>
           <Route exact path="/contactus" element={[<Navbar />, <Contact />]}> </Route>
+          <Route exact path="/login" element={<Login />}> </Route>
+          <Route exact path="/signup" element={<Signup />}> </Route>
+
+
 
 
 
