@@ -13,7 +13,6 @@ import Login from './components/LoginSignUp/Login';
 import Signup from './components/LoginSignUp/Signup';
 
 let title = "Latest Products";
-let title2 = "Hot Products";
 
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
               <Navbar />,
               <Carousel />,
               <ItemCard data={title} />,
-              <ItemCard data={title2} />,
               <Footer />
             ]}>
           </Route>
@@ -39,10 +37,6 @@ function App() {
           <Route exact path="/contactus" element={[<Navbar />, <Contact />]}> </Route>
           <Route exact path="/login" element={<Login />}> </Route>
           <Route exact path="/signup" element={<Signup />}> </Route>
-
-
-
-
 
         </Routes>
       </BrowserRouter>

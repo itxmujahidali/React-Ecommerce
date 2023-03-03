@@ -1,31 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
+
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+
+    function sendMessage(e) {
+
+        e.preventDefault();
+        axios.post('https://6401efb53779a86262614504.mockapi.io/ContactPage', {
+
+            name: name,
+            email: email,
+            message: message,
+        });
+        setName("");
+        setEmail("");
+        setMessage("");
+        alert("Message has been sent!")
+    }
+
     return (
         <>
-
             <div className='container mt-5'>
                 <h1 align='center' className='mt-5 mb-5'>Contact Us</h1>
-                <div class="form-group col-md-4" style={{float: "left", marginLeft: "12%"}}>
+                <div class="form-group col-md-4" style={{ float: "left", marginLeft: "12%" }}>
                     <label for="inputEmail4">
                         <b>Name</b>
                     </label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Name" />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} class="form-control" placeholder="Name" />
                 </div>
-                <div class="form-group col-md-4" style={{float: "left", marginLeft: "16%"}}>
+                <div class="form-group col-md-4" style={{ float: "left", marginLeft: "16%" }}>
                     <label for="inputEmail4">
                         <b>Email</b>
                     </label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} class="form-control" placeholder="Email" />
                 </div>
-                <div class="form-group col-md-10 mt-4 mb-5" style={{float: "left", marginLeft: "12%"}}>
+                <div class="form-group col-md-10 mt-4 mb-5" style={{ float: "left", marginLeft: "12%" }}>
                     <label for="inputEmail4">
                         <b>Message</b>
                     </label>
-                    <textarea class="form-control" placeholder="Enter Your Message"/>
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} class="form-control" placeholder="Enter Your Message" />
                 </div>
                 <div align='center'>
-                <button type="submit" class="btn btn-primary mb-2 rounded-pill">Send Message</button>
+                    <button onClick={sendMessage} class="btn btn-primary mb-2 rounded-pill">Send Message</button>
                 </div>
 
             </div>
@@ -34,3 +55,4 @@ const Contact = () => {
 }
 
 export default Contact
+

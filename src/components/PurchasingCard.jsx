@@ -1,8 +1,45 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import product1 from '../images/products/product1.jpg';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 const PurchasingCard = () => {
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address1, setAddress1] = useState("");
+    const [address2, setAddress2] = useState("");
+    const [city, setCity] = useState("");
+    const [zip, setZip] = useState("");
+
+    function submitAddress(e) {
+
+        e.preventDefault();
+        axios.post('https://6401efb53779a86262614504.mockapi.io/billingDetails', {
+            first_name: firstName,
+            last_name: lastName,
+            email: email,
+            phone: phone,
+            address1: address1,
+            address2: address2,
+            city: city,
+            zip_code: zip,
+        });
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPhone("");
+        setAddress1("");
+        setAddress2("");
+        setCity("");
+        setZip("");
+
+        alert("Message has been sent!")
+    }
+
+
+
     return (
         <>
 
@@ -25,7 +62,7 @@ const PurchasingCard = () => {
                                     <small className="text-muted">$12</small>
                                 </div>
                                 <span>
-                                    <img className="d-block mx-auto" src={product1} alt="" width="60" height="60" />
+                                    <img className="d-block mx-auto" src="" alt="" width="60" height="60" />
                                 </span>
                             </li>
 
@@ -57,23 +94,20 @@ const PurchasingCard = () => {
                             <div className="row">
                                 <div className="col-md-6 mb-3">
                                     <label for="firstName">First name</label>
-                                    <input type="text" className="form-control" id="firstName" placeholder="" value="" required="" />
+                                    <input value={firstName} onChange={ (e)=>setFirstName(e.target.value) }  type="text" className="form-control" placeholder="" required="" />
                                     <div className="invalid-feedback" />
                                     Valid first name is required.
                                 </div>
                                 <div className="col-md-6 mb-3">
                                     <label for="lastName">Last name</label>
-                                    <input type="text" className="form-control" id="lastName" placeholder="" value="" required="" />
-                                    <div className="invalid-feedback">
-                                        Valid last name is required.
-                                    </div>
+                                    <input value={lastName} onChange={ (e)=>setLastName(e.target.value) } type="text" className="form-control" placeholder=""  required="" />
                                 </div>
                             </div>
                         </div>
 
                         <div className="mb-3">
                             <label>Phone Number </label>
-                            <input type="text" className="form-control" id="phone_nummber" placeholder="0900 1234567" />
+                            <input value={phone} onChange={ (e)=>setPhone(e.target.value) } type="text" className="form-control" placeholder="0900 1234567" />
                             <div className="invalid-feedback">
                                 Please enter a valid phone number for shipping updates.
                             </div>
@@ -81,7 +115,7 @@ const PurchasingCard = () => {
 
                         <div className="mb-3">
                             <label for="email">Email <span className="text-muted">(Optional)</span></label>
-                            <input type="email" className="form-control" id="email" placeholder="you@example.com" />
+                            <input value={email} onChange={ (e)=>setEmail(e.target.value) } type="email" className="form-control" placeholder="you@example.com" />
                             <div className="invalid-feedback">
                                 Please enter a valid email address for shipping updates.
                             </div>
@@ -89,7 +123,7 @@ const PurchasingCard = () => {
 
                         <div className="mb-3">
                             <label for="address">Address</label>
-                            <input type="text" className="form-control" id="address" placeholder="1234 Main St" required="" />
+                            <input value={address1} onChange={ (e)=>setAddress1(e.target.value) } type="text" className="form-control"  placeholder="1234 Main St" required="" />
                             <div className="invalid-feedback">
                                 Please enter your shipping address.
                             </div>
@@ -97,23 +131,17 @@ const PurchasingCard = () => {
 
                         <div className="mb-3">
                             <label for="address2">Address 2 <span className="text-muted">(Optional)</span></label>
-                            <input type="text" className="form-control" id="address2" placeholder="Apartment or suite" />
+                            <input value={address2} onChange={ (e)=>setAddress2(e.target.value) } type="text" className="form-control" placeholder="Apartment or suite" />
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-8 mb-2">
+                            <div class="form-group col-md-6 mb-2">
                                 <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity"/>
+                                <input value={city} onChange={ (e)=>setCity(e.target.value) } type="text" class="form-control" />
                             </div>
-                            <div class="form-group col-md-4 mb-2">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
+                            
+                            <div class="form-group col-md-4">
                                 <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip"/>
+                                <input value={zip} onChange={ (e)=>setZip(e.target.value) } type="text" class="form-control" />
                             </div>
                         </div>
                     </div>
@@ -122,7 +150,7 @@ const PurchasingCard = () => {
             <div align='center' style={{ marginBottom: "5%" }}>
                 <hr className="mb-4" />
                 <Link to={"/invoice"}>
-                    <button className="btn btn-primary btn-lg btn-block rounded-pill" type="submit">Continue to billing</button>
+                    <button onClick={submitAddress} className="btn btn-primary btn-lg btn-block rounded-pill" >Continue to billing</button>
                 </Link>
             </div>
 
