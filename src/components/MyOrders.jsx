@@ -9,9 +9,9 @@ const MyOrders = () => {
 
     const [data, setData] = useState([])
 
-    const getMyOrders = () => {
+    const getItems = () => {
 
-        axios.get('https://6401efb53779a86262614504.mockapi.io/myOrders')
+        axios.get('http://127.0.0.1:8000/shop/myorder/')
             .then(function (response) {
                 setData(response.data)
             })
@@ -22,7 +22,7 @@ const MyOrders = () => {
 
     useEffect(() => {
 
-        getMyOrders();
+        getItems();
 
     }, [])
 
@@ -47,11 +47,11 @@ const MyOrders = () => {
                                 return <ul class="list-group mb-2">
                                     <Link to={"/invoice"} style={{ textDecoration: "none" }}>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <span class="btn btn-outline-secondary"> {apiData.item_title} </span>
-                                            <span class="text-muted"> Rs/ {apiData.item_price}</span>
-                                            <span class="text-muted">{apiData.item_status}</span>
+                                            <span class="btn btn-outline-secondary"> {apiData.order_item} </span>
+                                            <span class="text-muted"> Rs/ {apiData.order_price}</span>
+                                            <span class="text-muted">{apiData.delivered===true?'Delivered':'Not Delivered'}</span>
                                             <div style={imageParent}>
-                                                <img src={apiData.item_image} class="img-fluid" alt="image_not_load" />
+                                                <img src={apiData.image} class="img-fluid" alt="image_not_load" />
                                             </div>
                                         </li>
                                     </Link>

@@ -11,7 +11,7 @@ const Contact = () => {
     function sendMessage(e) {
 
         e.preventDefault();
-        axios.post('https://6401efb53779a86262614504.mockapi.io/ContactPage', {
+        axios.post('http://127.0.0.1:8000/shop/contactus/', {
 
             name: name,
             email: email,

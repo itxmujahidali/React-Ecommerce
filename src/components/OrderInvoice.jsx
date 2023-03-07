@@ -10,7 +10,7 @@ const OrderInvoice = () => { // Main Component Function
 
   const getInvoice = () => {
 
-    axios.get('https://6401efb53779a86262614504.mockapi.io/Invoice')
+    axios.get('http://127.0.0.1:8000/shop/invoice/2/')
       .then(function (response) {
         setData(response.data)
       })
@@ -23,7 +23,18 @@ const OrderInvoice = () => { // Main Component Function
   useEffect(() => {
 
     getInvoice();
+
+
   }, [])
+
+  let status;
+
+  if (data.delivered == true) {
+    status = "Delivered"
+  }
+  else {
+    status = "Not Delivered"
+  }
 
 
   return (
@@ -34,75 +45,68 @@ const OrderInvoice = () => { // Main Component Function
             <div className="col-lg-8 col-xl-6">
               <div className="card border-top border-bottom border-3" style={{ borderColor: "#f37a27 !important;" }}>
 
-                {
-                  data.map((apiData) => {
-                    // Display Data
 
-                    return <div className="card-body p-5">
+                <div className="card-body p-5">
 
-                      <p className="lead fw-bold mb-5" style={{ color: "#f37a27" }}>Purchase Reciept</p>
+                  <p className="lead fw-bold mb-5" style={{ color: "#f37a27" }}>Purchase Reciept</p>
 
-                      <div className="row">
-                        <div className="col mb-3">
-                          <p className="small text-muted mb-1">Date</p>
-                          <p>{apiData.order_date}</p>
-                        </div>
-                        <div className="col mb-3">
-                          <p className="small text-muted mb-1">Order No.</p>
-                          <p>{apiData.order_id}</p>
-                        </div>
-                      </div>
-
-                      <div className="mx-n5 px-5 py-4" style={{ backgroundColor: "#f2f2f2" }}>
-                        <div className="row">
-                          <div className="col-md-8 col-lg-9">
-                            <p>{apiData.item_title}</p>
-                          </div>
-                          <div className="col-md-4 col-lg-3">
-                            <p>Rs {apiData.item_price}</p>
-                          </div>
-                        </div>
-                        <div className="row">
-                          <div className="col-md-8 col-lg-9">
-                            <p className="mb-0">Shipping</p>
-                          </div>
-                          <div className="col-md-4 col-lg-3">
-                            <p className="mb-0">Rs {apiData.shipping}</p>
-                          </div>
-                        </div>
-                        <div className="row mt-3">
-                          <div className="col-md-8 col-lg-9">
-                            <p className="mb-0">Total Amount</p>
-                          </div>
-                          <div className="col-md-4 col-lg-3">
-                            <p className="mb-0">Rs <b>{apiData.total_amount}</b></p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div style={{marginTop: "4%"}}>
-                        <span>
-                          <p className="lead fw-bold mb-4 pb-2" style={{ color: "#f37a27", float: "left" }}>Tracking Order</p>
-                        </span>
-                        <span>
-                          <p style={{ float: "right" }}>{apiData.delivery_status}</p>
-                        </span>
-                      </div>
-                      
-
+                  <div className="row">
+                    <div className="col mb-3">
+                      <p className="small text-muted mb-1">Date</p>
+                      <p>{data.order_updated_at}</p>
                     </div>
+                    <div className="col mb-3">
+                      <p className="small text-muted mb-1">Order No.</p>
+                      <p>{data.id}</p>
+                    </div>
+                  </div>
 
-                  })
+                  <div className="mx-n5 px-5 py-4" style={{ backgroundColor: "#f2f2f2" }}>
+                    <div className="row">
+                      <div className="col-md-8 col-lg-9">
+                        <p>{data.order_item}</p>
+                      </div>
+                      <div className="col-md-4 col-lg-3">
+                        <p>Rs {data.order_price}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-8 col-lg-9">
+                        <p className="mb-0">Shipping</p>
+                      </div>
+                      <div className="col-md-4 col-lg-3">
+                        <p className="mb-0">Rs 0</p>
+                      </div>
+                    </div>
+                    <div className="row mt-3">
+                      <div className="col-md-8 col-lg-9">
+                        <p className="mb-0">Total Amount</p>
+                      </div>
+                      <div className="col-md-4 col-lg-3">
+                        <p className="mb-0">Rs <b>{data.order_price}</b></p>
+                      </div>
+                    </div>
+                  </div>
 
-                }
-                      <span align='center' style={{marginBottom: "8%"}}>  
-                      <p className="mt-4 pt-2 mb-0">
-                        Want any help? 
-                        <a href="/contactus" style={{ color: "#f37a27" }}>
-                          Please contact us
-                          </a>
-                        </p>
-                      </span>
+                  <div style={{ marginTop: "4%" }}>
+                    <span>
+                      <p className="lead fw-bold mb-4 pb-2" style={{ color: "#f37a27", float: "left" }}>Tracking Order</p>
+                    </span>
+                    <span>
+                      <p style={{ float: "right" }}>{status}</p>
+                    </span>
+                  </div>
+
+
+                </div>
+                <span align='center' style={{ marginBottom: "8%" }}>
+                  <p className="mt-4 pt-2 mb-0">
+                    Want any help?
+                    <a href="/contactus" style={{ color: "#f37a27" }}>
+                      Please contact us
+                    </a>
+                  </p>
+                </span>
 
 
 

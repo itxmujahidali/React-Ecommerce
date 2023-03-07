@@ -1,7 +1,28 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+
+    const [data, setData] = useState([])
+
+    const getItems = () => {
+
+        axios.get('http://127.0.0.1:8000/shop/categories/')
+            .then(function (response) {
+                setData(response.data)
+            })
+            .catch(function (error) {
+                console.log("Error Occured");
+            });
+    }
+
+    useEffect(() => {
+
+        getItems();
+
+    }, [])
+
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -15,34 +36,49 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link to={"/"} style={{textDecoration: "none"}}>
-                                <a className="nav-link active" aria-current="page" href="/">Home</a>
+                                <Link to={"/"} style={{ textDecoration: "none" }}>
+                                    <a className="nav-link active" aria-current="page">Home</a>
                                 </Link>
                             </li>
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Shop
-                                </a>
-                                <ul className="dropdown-menu">
-                                    <li>
-                                    <Link to={"/"} style={{textDecoration: "none"}}>
-                                        <a className="dropdown-item" href="/">Men</a>
-                                    </Link>
+
+                            {
+                                data.map((apiData) => {
+                                    
+                                    return <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {apiData.cat_name}
+                                        </a>
+
+                                        {
+                                            apiData.Sub_Category.map((apiData2) => {
+
+                                                return apiData2.sub_name.length !== 0 ? <ul className="dropdown-menu">
+                                                    <li>
+                                                        <Link to={`/`} style={{ textDecoration: "none" }}>
+                                                            <button className="dropdown-item">{apiData2.sub_name}</button>
+
+                                                        </Link>
+                                                    </li>
+                                                    </ul>: undefined;
+                                            })
+                                        }
+
+
+
                                     </li>
-                                    <li><a className="dropdown-item" href="/">Women</a></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><a className="dropdown-item" href="/">Electronics</a></li>
-                                </ul>
+                                })
+                            }
+
+
+                            <li className="nav-item">
+                                <Link to={"/myorder"} style={{ textDecoration: "none" }}>
+                                    <a className="nav-link" href="/myorder">My Order</a>
+                                </Link>
                             </li>
                             <li className="nav-item">
-                            <Link to={"/myorder"} style={{textDecoration: "none"}}>
-                                <a className="nav-link" href="/myorder">My Order</a>
-                            </Link>
-                            </li>
-                            <li className="nav-item">
-                            <Link to={"/contactus"} style={{textDecoration: "none"}}>
-                                <a className="nav-link" href="/contactus">Contact</a>
-                            </Link>
+                                <Link to={"/contactus"} style={{ textDecoration: "none" }}>
+                                    <a className="nav-link" href="/contactus">Contact</a>
+                                </Link>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">

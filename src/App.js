@@ -31,8 +31,8 @@ function App() {
             ]}>
           </Route>
 
-          <Route exact path="/purchasing" element={[<Navbar />, <PurchasingCard />]}> </Route>
-          <Route exact path="/invoice" element={[<Navbar />, <OrderInvoice />]}> </Route>
+          <Route exact path="/purchasing/:id/" element={[<Navbar />, <PurchasingCard />]}> </Route>
+          <Route exact path="/invoice/" element={[<OrderInvoice />]}> </Route>
           <Route exact path="/myorder" element={[<Navbar />, <MyOrders />]}> </Route>
           <Route exact path="/contactus" element={[<Navbar />, <Contact />]}> </Route>
           <Route exact path="/login" element={<Login />}> </Route>
