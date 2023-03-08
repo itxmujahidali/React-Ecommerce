@@ -13,7 +13,6 @@ import Login from './components/LoginSignUp/Login';
 import Signup from './components/LoginSignUp/Signup';
 import CategoryProducts from './components/CategoryProducts'
 
-let title = "Latest Products";
 
 
 function App() {
@@ -27,7 +26,7 @@ function App() {
             [
               <Navbar />,
               <Carousel />,
-              <ItemCard data={title} />,
+              <ItemCard />,
               <Footer />
             ]}>
           </Route>

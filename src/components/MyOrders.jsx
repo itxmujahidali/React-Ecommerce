@@ -20,7 +20,7 @@ const MyOrders = () => {
     }
 
     const handleDelete = (id) => {
-        axios.delete(`https://63ff76bc9f844910297eee5b.mockapi.io/basic-react/${id}`)
+        axios.delete(`http://127.0.0.1:8000/shop/myorder/${id}/`)
             .then(() => {
                 getData();
             })
@@ -57,7 +57,7 @@ const MyOrders = () => {
                                             <span class="btn btn-outline-secondary"> {apiData.order_item} </span>
                                         </Link>
                                         <span class="text-muted disabled">{apiData.delivered === true ? <button style={{ width: "100px" }} type="button" class="btn btn-warning">Delivered</button>
-                                            : <button style={{ width: "100px" }} type="button" onClick={handleDelete} class="btn btn-danger">Cancel</button>}
+                                            : <button style={{ width: "100px" }} type="button" onClick={ ()=>{handleDelete(apiData.id)} } class="btn btn-danger">Cancel</button>}
                                         </span>
                                         <Link to={"/invoice"} style={{ textDecoration: "none" }}>
                                             <div style={imageParent}>

@@ -2,33 +2,48 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+
 const Navbar = () => {
 
     const [data, setData] = useState([])
+    const [search, setSearch] = useState([])
 
-    const getItems = () => {
+    const getCategory = () => {
 
-        axios.get('http://127.0.0.1:8000/shop/categories/')
+        axios.get('http://127.0.0.1:8000/shop/category/')
             .then(function (response) {
                 setData(response.data)
+                
             })
             .catch(function (error) {
                 console.log("Error Occured");
             });
     }
 
+    const handleSearchData = () => {
+
+        axios.get(`http://127.0.0.1:8000/shop/items?search=${search}`)
+            .then(function (response) {
+                setSearch(response.data)
+            })
+            .catch(function (error) {
+                console.log("Error Occured");
+            });
+            
+        }  
+        
     useEffect(() => {
 
-        getItems();
+        getCategory();
 
     }, [])
-
+    console.log('-------------->', search);
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="/">
-                        <img src="https://shop.app/cdn/shopifycloud/arrive_website/assets/marketing/global/shop-app-logo-purple-2355fa626947c074acd0299cac7f0e038e430ebc9a70e75a48b5d6616d508497.svg" alt="Bootstrap" width="30" height="24" />
+                        <img src="https://thedownloadworld.com/web/wp-content/uploads/2021/05/shop.png" alt="Bootstrap" width="54" height="36" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -43,7 +58,7 @@ const Navbar = () => {
 
                             {
                                 data.map((apiData) => {
-                                    
+
                                     return <li className="nav-item dropdown">
                                         <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             {apiData.cat_name}
@@ -59,7 +74,7 @@ const Navbar = () => {
 
                                                         </Link>
                                                     </li>
-                                                    </ul>: undefined;
+                                                </ul> : undefined;
                                             })
                                         }
 
@@ -81,15 +96,14 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         </ul>
-                        <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-sm btn-outline-success rounded-pill " type="submit">Search</button>
-                        </form>
+                        <div className="d-flex" role="search">
+                            <input className="form-control me-2" placeholder="Search" aria-label="Search"  onChange={(e) => setSearch(e.target.value)} />
+                            <button className="btn btn-sm btn-outline-success rounded-pill" onClick={handleSearchData} >Search</button>
+                        </div>
                     </div>
                 </div>
             </nav>
         </>
     )
 }
-
 export default Navbar
