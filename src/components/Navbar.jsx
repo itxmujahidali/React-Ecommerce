@@ -54,7 +54,7 @@ const Navbar = () => {
 
                                                 return apiData2.sub_name.length !== 0 ? <ul className="dropdown-menu">
                                                     <li>
-                                                        <Link to={`/`} style={{ textDecoration: "none" }}>
+                                                        <Link to={`/${apiData.cat_name}/${apiData2.sub_name}`} style={{ textDecoration: "none" }}>
                                                             <button className="dropdown-item">{apiData2.sub_name}</button>
 
                                                         </Link>

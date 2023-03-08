@@ -9,8 +9,7 @@ const MyOrders = () => {
 
     const [data, setData] = useState([])
 
-    const getItems = () => {
-
+    const getData = () => {
         axios.get('http://127.0.0.1:8000/shop/myorder/')
             .then(function (response) {
                 setData(response.data)
@@ -20,9 +19,17 @@ const MyOrders = () => {
             });
     }
 
+    const handleDelete = (id) => {
+        axios.delete(`https://63ff76bc9f844910297eee5b.mockapi.io/basic-react/${id}`)
+            .then(() => {
+                getData();
+            })
+        alert("Order has been deleted!")
+    }
+
     useEffect(() => {
 
-        getItems();
+        getData();
 
     }, [])
 
@@ -45,16 +52,19 @@ const MyOrders = () => {
                         {
                             data.map((apiData) => {
                                 return <ul class="list-group mb-2">
-                                    <Link to={"/invoice"} style={{ textDecoration: "none" }}>
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <Link to={"/invoice"} style={{ textDecoration: "none" }}>
                                             <span class="btn btn-outline-secondary"> {apiData.order_item} </span>
-                                            <span class="text-muted"> Rs/ {apiData.order_price}</span>
-                                            <span class="text-muted">{apiData.delivered===true?'Delivered':'Not Delivered'}</span>
+                                        </Link>
+                                        <span class="text-muted disabled">{apiData.delivered === true ? <button style={{ width: "100px" }} type="button" class="btn btn-warning">Delivered</button>
+                                            : <button style={{ width: "100px" }} type="button" onClick={handleDelete} class="btn btn-danger">Cancel</button>}
+                                        </span>
+                                        <Link to={"/invoice"} style={{ textDecoration: "none" }}>
                                             <div style={imageParent}>
                                                 <img src={apiData.image} class="img-fluid" alt="image_not_load" />
                                             </div>
-                                        </li>
-                                    </Link>
+                                        </Link>
+                                    </li>
                                 </ul>
                             })
                         }
