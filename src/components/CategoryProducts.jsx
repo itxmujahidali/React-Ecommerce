@@ -25,7 +25,7 @@ const CategoryProducts = () => {
     }, [])
 
 
-    // console.log('------------HOGYA-------------->', data);
+    console.log('------------Params-------------->', params);
 
     return (
         <>
@@ -41,12 +41,14 @@ const CategoryProducts = () => {
                             return apiData.Sub_Category.map((apiData2)=>{
                                 // console.log('----------ApiData2-------->', apiData2.item_subCategory);
                                 return apiData2.item_subCategory.map((apiData3)=>{
-                                    // console.log('----------ApiData3------------------>', apiData3.item_name);
+                                    // console.log('----------ApiData3------------------>', apiData3);
                                     return <div className="col">
                                     <div className="card h-100">
                                         <img src={apiData3.image_url} className="card-img-top" alt="..." />
                                         <div className="card-body d-grid gap-2" align='center'>
                                             <h5 className="card-title">{apiData3.item_name}</h5>
+                                            {/* <p className="text-muted">{apiData3.sub_cat}</p> */}
+
                                             <p className="card-text"><b>Rs/ {apiData3.item_price}</b></p>
                                             
     

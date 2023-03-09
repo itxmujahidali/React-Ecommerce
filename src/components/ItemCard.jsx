@@ -1,19 +1,48 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const ItemCard = () => {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const searchValue = searchParams.get('search');
+    console.log('---------------*-----SEARCHHHHHHHHH------*--------->', searchValue);
+
+
 
     const [data, setData] = useState([]);
+    // console.log('----------------------->', params);
+
+
     const getItems = () => {
 
-        axios.get('http://127.0.0.1:8000/shop/items/')
+        if (searchValue != null ){
+
+            axios.get(`http://127.0.0.1:8000/shop/items?search=${searchValue}`)
             .then(function (response) {
                 setData(response.data)
             })
             .catch(function (error) {
                 console.log("Error Occured");
             });
+            console.log('---------------*-----IFffffff------*--------->');
+
+        }
+        else{
+            
+            axios.get('http://127.0.0.1:8000/shop/items/')
+            .then(function (response) {
+                setData(response.data)
+            })
+            .catch(function (error) {
+                console.log("Error Occured");
+            });
+
+            console.log('---------------*-----Elseeeeeee------*--------->');
+
+        }
+
+        
     }
     // console.log('------------------------------------->', data);
 

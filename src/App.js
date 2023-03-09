@@ -30,6 +30,13 @@ function App() {
               <Footer />
             ]}>
           </Route>
+          <Route exact path="/items" element={
+            [
+              <Navbar />,
+              <ItemCard />,
+              <Footer />
+            ]}>
+          </Route>
 
           <Route exact path="/:cat_name/:sub_cat/?" element={[<Navbar/>, <CategoryProducts />, <Footer />]}> </Route>
           <Route exact path="/purchasing/:id/" element={[<Navbar />, <PurchasingCard />, <Footer />]}> </Route>

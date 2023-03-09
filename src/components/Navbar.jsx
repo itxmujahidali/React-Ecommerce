@@ -19,19 +19,7 @@ const Navbar = () => {
                 console.log("Error Occured");
             });
     }
-
-    const handleSearchData = () => {
-
-        axios.get(`http://127.0.0.1:8000/shop/items?search=${search}`)
-            .then(function (response) {
-                setSearch(response.data)
-            })
-            .catch(function (error) {
-                console.log("Error Occured");
-            });
-            
-        }  
-        
+  
     useEffect(() => {
 
         getCategory();
@@ -98,7 +86,14 @@ const Navbar = () => {
                         </ul>
                         <div className="d-flex" role="search">
                             <input className="form-control me-2" placeholder="Search" aria-label="Search"  onChange={(e) => setSearch(e.target.value)} />
-                            <button className="btn btn-sm btn-outline-success rounded-pill" onClick={handleSearchData} >Search</button>
+                            <Link to={{
+                                pathname: '/items',
+                                search: `?search=${search}`
+                            }}
+                            style={{ textDecoration: "none" }}>
+
+                            <button className="btn btn-sm btn-outline-success rounded-pill"  >Search</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
