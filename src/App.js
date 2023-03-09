@@ -11,17 +11,16 @@ import MyOrders from './components/MyOrders';
 import Contact from './components/Contact';
 import Login from './components/LoginSignUp/Login';
 import Signup from './components/LoginSignUp/Signup';
-import CategoryProducts from './components/CategoryProducts'
-
+import CategoryProducts from './components/CategoryProducts';
 
 
 function App() {
+
   return (
     <>
 
       <BrowserRouter>
         <Routes>
-
           <Route exact path="/" element={
             [
               <Navbar />,

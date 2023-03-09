@@ -43,25 +43,25 @@ const Signup = () => {
             <div className='container' style={{ marginTop: "10%", width: "45%" }}>
                 <h1 align="center">REGISTER</h1>
 
-                <div class="mb-3 mt-2">
-                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" class="form-control" />
+                <div className="mb-3 mt-2">
+                    <label for="exampleInputEmail1" className="form-label">Full Name</label>
+                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" />
                 </div>
-                <div class="mb-3 mt-2">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" class="form-control" />
-                    <div id="emailHelp" class="form-text">We'll share confirmation code on your email.</div>
+                <div className="mb-3 mt-2">
+                    <label for="exampleInputEmail1" className="form-label">Email address</label>
+                    <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" />
+                    <div id="emailHelp" className="form-text">We'll share confirmation code on your email.</div>
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input value={password1} onChange={(e) => setPassword1(e.target.value)} type="password" class="form-control" />
+                <div className="mb-3">
+                    <label for="exampleInputPassword1" className="form-label">Password</label>
+                    <input value={password1} onChange={(e) => setPassword1(e.target.value)} type="password" className="form-control" />
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
-                    <input value={password2} onChange={(e) => setPassword2(e.target.value)} type="password" class="form-control" />
+                <div className="mb-3">
+                    <label for="exampleInputPassword1" className="form-label">Confirm Password</label>
+                    <input value={password2} onChange={(e) => setPassword2(e.target.value)} type="password" className="form-control" />
                 </div>
                 <div align='center' className='mt-4'>
-                    <button onClick={registerPost} class="btn btn-primary">Register</button>
+                    <button onClick={registerPost} className="btn btn-primary">Register</button>
                 </div>
             </div>
         </>

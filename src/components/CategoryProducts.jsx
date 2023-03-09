@@ -18,10 +18,12 @@ const CategoryProducts = () => {
     }
 
     useEffect(() => {
-
         getItems();
+        // eslint-disable-next-line
+        console.log('*******************> UseEffect');
 
-    })
+
+    }, [])
 
     return (
         <>
@@ -31,7 +33,7 @@ const CategoryProducts = () => {
                     {
                         data.map((apiData) => {
                             return apiData.item_subCategory.map((apiData2) => {
-                                return <div className="col">
+                                return <div className="col" key={apiData2.id}>
                                     <div className="card h-100">
                                         <img src={apiData2.image_url} className="card-img-top" alt="..." />
                                         <div className="card-body d-grid gap-2" align='center'>

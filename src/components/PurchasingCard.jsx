@@ -151,15 +151,15 @@ const PurchasingCard = () => {
                             <label for="address2">Address 2 <span className="text-muted">(Optional)</span></label>
                             <input value={address2} onChange={(e) => setAddress2(e.target.value)} type="text" className="form-control" placeholder="Apartment or suite" />
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6 mb-2">
+                        <div className="form-row">
+                            <div className="form-group col-md-6 mb-2">
                                 <label for="inputCity">City</label>
-                                <input value={city} onChange={(e) => setCity(e.target.value)} type="text" class="form-control" />
+                                <input value={city} onChange={(e) => setCity(e.target.value)} type="text" className="form-control" />
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div className="form-group col-md-4">
                                 <label for="inputZip">Zip</label>
-                                <input value={zip} onChange={(e) => setZip(e.target.value)} type="text" class="form-control" />
+                                <input value={zip} onChange={(e) => setZip(e.target.value)} type="text" className="form-control" />
                             </div>
                         </div>
                     </div>

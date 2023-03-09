@@ -21,8 +21,8 @@ const Navbar = () => {
     }
 
     useEffect(() => {
-
         getCategory();
+        // eslint-disable-next-line
 
 
     }, [])
@@ -49,7 +49,7 @@ const Navbar = () => {
                             {
                                 data.map((apiData) => {
 
-                                    return <li className="nav-item dropdown">
+                                    return <li className="nav-item dropdown" key={apiData.id}>
                                         <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             {apiData.cat_name}
                                         </a>
@@ -57,14 +57,12 @@ const Navbar = () => {
                                         <ul className="dropdown-menu">
                                             {
                                                 apiData.Sub_Category.map((apiData2) => {
-                                                    return <li>
+                                                    return <li key={apiData2.id}>
                                                         <Link to={`/${apiData.cat_name}/${apiData2.sub_name}`} style={{ textDecoration: "none" }}>
                                                             <button className="dropdown-item">{apiData2.sub_name}</button>
 
                                                         </Link>
                                                     </li>
-
-
                                                 })
                                             }
                                         </ul>

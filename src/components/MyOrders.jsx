@@ -45,23 +45,23 @@ const MyOrders = () => {
 
     return (
         <>
-            <div class="container mt-5" style={body}>
-                <div class="row">
-                    <div class="col-12 col-sm-8 col-lg-12">
-                        <h6 class="text-muted">All Orders</h6>
+            <div className="container mt-5" style={body}>
+                <div className="row">
+                    <div className="col-12 col-sm-8 col-lg-12">
+                        <h6 className="text-muted">All Orders</h6>
                         {
                             data.map((apiData) => {
-                                return <ul class="list-group mb-2">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                return <ul className="list-group mb-2">
+                                    <li className="list-group-item d-flex justify-content-between align-items-center">
                                         <Link to={"/invoice"} style={{ textDecoration: "none" }}>
-                                            <span class="btn btn-outline-secondary"> {apiData.order_item} </span>
+                                            <span className="btn btn-outline-secondary"> {apiData.order_item} </span>
                                         </Link>
-                                        <span class="text-muted disabled">{apiData.delivered === true ? <button style={{ width: "100px" }} type="button" class="btn btn-warning">Delivered</button>
-                                            : <button style={{ width: "100px" }} type="button" onClick={ ()=>{handleDelete(apiData.id)} } class="btn btn-danger">Cancel</button>}
+                                        <span className="text-muted disabled">{apiData.delivered === true ? <button style={{ width: "100px" }} type="button" className="btn btn-warning">Delivered</button>
+                                            : <button style={{ width: "100px" }} type="button" onClick={ ()=>{handleDelete(apiData.id)} } className="btn btn-danger">Cancel</button>}
                                         </span>
                                         <Link to={"/invoice"} style={{ textDecoration: "none" }}>
                                             <div style={imageParent}>
-                                                <img src={apiData.image} class="img-fluid" alt="image_not_load" />
+                                                <img src={apiData.image} className="img-fluid" alt="image_not_load" />
                                             </div>
                                         </Link>
                                     </li>

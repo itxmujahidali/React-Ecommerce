@@ -26,18 +26,18 @@ const Login = () => {
         <>
         <div className='container' style={{marginTop: "10%", width: "45%"}}>
             <h1 align="center">LOGIN </h1>
-            <div class="mb-3 mt-2">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" value={email} onChange={ (e)=>setEmail(e.target.value) } />
-                <div class="form-text">We'll never share your email with anyone else.</div>
+            <div className="mb-3 mt-2">
+                <label for="exampleInputEmail1" className="form-label">Email address</label>
+                <input type="email" className="form-control" value={email} onChange={ (e)=>setEmail(e.target.value) } />
+                <div className="form-text">We'll never share your email with anyone else.</div>
             </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" value={password} onChange={ (e)=>setPassword(e.target.value) } />
+            <div className="mb-3">
+                <label for="exampleInputPassword1" className="form-label">Password</label>
+                <input type="password" className="form-control" value={password} onChange={ (e)=>setPassword(e.target.value) } />
                 <a href='/#'>Forget account</a>
             </div>
             <div align='center' className='mt-4'>
-            <button onClick={loginPost} class="btn btn-primary">Submit</button>
+            <button onClick={loginPost} className="btn btn-primary">Submit</button>
             </div>
         </div>
         </>

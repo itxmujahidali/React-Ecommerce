@@ -27,26 +27,26 @@ const Contact = () => {
         <>
             <div className='container mt-5'>
                 <h1 align='center' className='mt-5 mb-5'>Contact Us</h1>
-                <div class="form-group col-md-4" style={{ float: "left", marginLeft: "12%" }}>
+                <div className="form-group col-md-4" style={{ float: "left", marginLeft: "12%" }}>
                     <label for="inputEmail4">
                         <b>Name</b>
                     </label>
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} class="form-control" placeholder="Name" />
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" placeholder="Name" />
                 </div>
-                <div class="form-group col-md-4" style={{ float: "left", marginLeft: "16%" }}>
+                <div className="form-group col-md-4" style={{ float: "left", marginLeft: "16%" }}>
                     <label for="inputEmail4">
                         <b>Email</b>
                     </label>
-                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} class="form-control" placeholder="Email" />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Email" />
                 </div>
-                <div class="form-group col-md-10 mt-4 mb-5" style={{ float: "left", marginLeft: "12%" }}>
+                <div className="form-group col-md-10 mt-4 mb-5" style={{ float: "left", marginLeft: "12%" }}>
                     <label for="inputEmail4">
                         <b>Message</b>
                     </label>
-                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} class="form-control" placeholder="Enter Your Message" />
+                    <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="form-control" placeholder="Enter Your Message" />
                 </div>
                 <div align='center'>
-                    <button onClick={sendMessage} class="btn btn-primary mb-2 rounded-pill">Send Message</button>
+                    <button onClick={sendMessage} className="btn btn-primary mb-2 rounded-pill">Send Message</button>
                 </div>
 
             </div>
