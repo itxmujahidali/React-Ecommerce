@@ -23,6 +23,7 @@ const Navbar = () => {
     useEffect(() => {
 
         getCategory();
+        
 
     }, [])
     console.log('-------------->', search);
@@ -86,14 +87,20 @@ const Navbar = () => {
                         </ul>
                         <div className="d-flex" role="search">
                             <input className="form-control me-2" placeholder="Search" aria-label="Search"  onChange={(e) => setSearch(e.target.value)} />
-                            <Link to={{
-                                pathname: '/items',
-                                search: `?search=${search}`
-                            }}
-                            style={{ textDecoration: "none" }}>
+                            
+                            {
+                                search.length>0?<Link to={{
+                                    pathname: '/items',
+                                    search: `?search=${search}`
+                                }}
+                                style={{ textDecoration: "none" }}>
+    
+                                <button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
+                                </Link>:<button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
 
-                            <button className="btn btn-sm btn-outline-success rounded-pill"  >Search</button>
-                            </Link>
+                            }
+                            
+                            
                         </div>
                     </div>
                 </div>

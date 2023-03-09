@@ -30,9 +30,8 @@ function App() {
               <Footer />
             ]}>
           </Route>
-          <Route exact path="/items" element={
+          <Route path="items" element={
             [
-              <Navbar />,
               <ItemCard />,
               <Footer />
             ]}>
