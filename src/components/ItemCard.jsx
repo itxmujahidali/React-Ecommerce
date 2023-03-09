@@ -6,7 +6,6 @@ const ItemCard = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const searchValue = searchParams.get('search');
-    console.log('---------------*-----SEARCHHHHHHHHH------*--------->', searchValue);
 
 
 
@@ -16,35 +15,31 @@ const ItemCard = () => {
 
     const getItems = () => {
 
-        if (searchValue != null ){
+        if (searchValue != null) {
 
             axios.get(`http://127.0.0.1:8000/shop/items?search=${searchValue}`)
-            .then(function (response) {
-                setData(response.data)
-            })
-            .catch(function (error) {
-                console.log("Error Occured");
-            });
-            console.log('---------------*-----IFffffff------*--------->');
+                .then(function (response) {
+                    setData(response.data)
+                })
+                .catch(function (error) {
+                    console.log("Error Occured");
+                });
 
         }
-        else{
-            
+        else {
+
             axios.get('http://127.0.0.1:8000/shop/items/')
-            .then(function (response) {
-                setData(response.data)
-            })
-            .catch(function (error) {
-                console.log("Error Occured");
-            });
-
-            console.log('---------------*-----Elseeeeeee------*--------->');
+                .then(function (response) {
+                    setData(response.data)
+                })
+                .catch(function (error) {
+                    console.log("Error Occured");
+                });
 
         }
 
-        
+
     }
-    // console.log('------------------------------------->', data);
 
     useEffect(() => {
         getItems();

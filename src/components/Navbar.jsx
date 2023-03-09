@@ -13,20 +13,21 @@ const Navbar = () => {
         axios.get('http://127.0.0.1:8000/shop/category/')
             .then(function (response) {
                 setData(response.data)
-                
+
             })
             .catch(function (error) {
                 console.log("Error Occured");
             });
     }
-  
+
     useEffect(() => {
 
         getCategory();
-        
+
 
     }, [])
-    console.log('-------------->', search);
+    
+
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -53,26 +54,23 @@ const Navbar = () => {
                                             {apiData.cat_name}
                                         </a>
 
-                                        {
-                                            apiData.Sub_Category.map((apiData2) => {
-
-                                                return apiData2.sub_name.length !== 0 ? <ul className="dropdown-menu">
-                                                    <li>
+                                        <ul className="dropdown-menu">
+                                            {
+                                                apiData.Sub_Category.map((apiData2) => {
+                                                    return <li>
                                                         <Link to={`/${apiData.cat_name}/${apiData2.sub_name}`} style={{ textDecoration: "none" }}>
                                                             <button className="dropdown-item">{apiData2.sub_name}</button>
 
                                                         </Link>
                                                     </li>
-                                                </ul> : undefined;
-                                            })
-                                        }
 
 
-
+                                                })
+                                            }
+                                        </ul>
                                     </li>
                                 })
                             }
-
 
                             <li className="nav-item">
                                 <Link to={"/myorder"} style={{ textDecoration: "none" }}>
@@ -86,21 +84,17 @@ const Navbar = () => {
                             </li>
                         </ul>
                         <div className="d-flex" role="search">
-                            <input className="form-control me-2" placeholder="Search" aria-label="Search"  onChange={(e) => setSearch(e.target.value)} />
-                            
+                            <input className="form-control me-2" placeholder="Search" aria-label="Search" onChange={(e) => setSearch(e.target.value)} />
                             {
-                                search.length>0?<Link to={{
+                                search.length > 0 ? <Link to={{
                                     pathname: '/items',
                                     search: `?search=${search}`
                                 }}
-                                style={{ textDecoration: "none" }}>
-    
-                                <button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
-                                </Link>:<button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
+                                    style={{ textDecoration: "none" }}>
 
+                                    <button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
+                                </Link> : <button className="btn btn-sm btn-outline-success rounded-pill" >Search</button>
                             }
-                            
-                            
                         </div>
                     </div>
                 </div>
