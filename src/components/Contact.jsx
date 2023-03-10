@@ -16,6 +16,11 @@ const Contact = () => {
             name: name,
             email: email,
             message: message,
+        }).then(function (response) {
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            console.log("Error Occured");
         });
         setName("");
         setEmail("");

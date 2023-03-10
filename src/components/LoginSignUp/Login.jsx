@@ -1,22 +1,32 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [isAuth, setIsAuth] = useState("")
+    const navigate = useNavigate(); // useNavigate hook
 
-    function loginPost(e) {
+
+    async function loginPost(e) {
 
         e.preventDefault();
         axios.post('http://127.0.0.1:8000/users/login/', {
 
             username: userName,
             password: password,
+            
         }).then(response => {
             localStorage.clear();
             localStorage.setItem("token", response.data.token)
+            setIsAuth(response.data.token)
+            setTimeout(() => {
+                navigate('/', { replace: true }); // redirect to home page and replace the current entry in the history stack
+            }, 1000); // wait for 2 seconds
+
         })
             .catch(error => {
                 console.error(error);
@@ -24,10 +34,10 @@ const Login = () => {
 
         setUserName("");
         setPassword("");
-        alert("Login has been sent!")
     }
 
-
+    
+    
 
     return (
         <>
@@ -49,7 +59,9 @@ const Login = () => {
                     </span>
                 </div>
                 <div align='center' className='mt-4'>
+                
                     <button onClick={loginPost} className="btn btn-primary">Submit</button>
+                    
                 </div>
             </div>
         </>

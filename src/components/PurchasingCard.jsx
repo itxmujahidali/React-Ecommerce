@@ -17,8 +17,8 @@ const PurchasingCard = () => {
     const [zip, setZip] = useState("");
     const [data, setData] = useState([]);
 
-    
-    
+
+
     const getItems = () => {
         axios.get(`http://127.0.0.1:8000/shop/items/${params.id}/`)
             .then(function (response) {
@@ -32,9 +32,7 @@ const PurchasingCard = () => {
     function submitAddress() {
         // e.preventDefault();
         axios.post('http://127.0.0.1:8000/shop/purchasing/', {
-
             order_item: data.id,
-            order_user: 11,
             first_name: firstName,
             last_name: lastName,
             phone_number: phone,
@@ -43,12 +41,17 @@ const PurchasingCard = () => {
             address2: address2,
             city: city,
             zip_code: zip,
-        }).then(function (response) {
-            console.log("status:", response.data);
+        }, {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('token')}`
+            }
         })
-        .catch(function (error) {
-            console.log("Error Occured");
-        });
+            .then(function (response) {
+                console.log("status:", response.data);
+            })
+            .catch(function (error) {
+                console.log("Error Occured");
+            });
         setFirstName("");
         setLastName("");
         setEmail("");

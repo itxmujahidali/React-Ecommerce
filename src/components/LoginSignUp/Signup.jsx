@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Signup = () => {
 
-
+    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
@@ -17,7 +18,6 @@ const Signup = () => {
         if (password1 === password2) {
             e.preventDefault();
             axios.post('http://127.0.0.1:8000/users/register/', {
-
                 first_name: firstName,
                 last_name: lastName,
                 username: userName,
@@ -27,6 +27,7 @@ const Signup = () => {
             }).then(response => {
                 localStorage.clear();
                 localStorage.setItem("token", response.data.token)
+                alert("Account has been created! Please click the login button for login")
             })
                 .catch(error => {
                     console.error(error);
@@ -38,7 +39,6 @@ const Signup = () => {
             setEmail("");
             setPassword1("");
             setPassword2("");
-            alert("Register has been sent!")
         }
         else {
             return alert("Your Password is not same!")

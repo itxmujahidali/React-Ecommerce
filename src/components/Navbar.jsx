@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
 
     const [data, setData] = useState([])
     const [search, setSearch] = useState([])
+    const navigate = useNavigate();
 
     const token = localStorage.getItem('token')
 
@@ -32,6 +33,7 @@ const Navbar = () => {
                 // Remove token from local storage
                 localStorage.removeItem('token');
                 alert("Logout Successfully!")
+                navigate("/login");
             })
             .catch(function (error) {
                 console.log("Error Occured");
