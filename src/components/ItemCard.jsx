@@ -10,12 +10,14 @@ const ItemCard = () => {
 
 
     const [data, setData] = useState([]);
+    const [title, setTitle] = useState()
     // console.log('----------------------->', params);
 
 
     const getItems = () => {
 
         if (searchValue != null) {
+            setTitle(`Search: "${searchValue}"`)
 
             axios.get(`http://127.0.0.1:8000/shop/items?search=${searchValue}`)
                 .then(function (response) {
@@ -27,6 +29,7 @@ const ItemCard = () => {
 
         }
         else {
+            setTitle("Latest Products")
 
             axios.get('http://127.0.0.1:8000/shop/items/')
                 .then(function (response) {
@@ -53,8 +56,8 @@ const ItemCard = () => {
         <>
             <div className='container'>
 
-
-                <h2 className='mt-5 mb-5' align='center'>Latest Products</h2>
+            
+                <h2 className='mt-5 mb-5' align='center'> {title}</h2>
                 <div className="row row-cols-1 row-cols-md-4 g-4">
 
                     {

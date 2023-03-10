@@ -54,11 +54,12 @@ const PurchasingCard = () => {
 
 
     useEffect(() => {
-
+        window.scrollTo(0, 0);
         getItems();
         // eslint-disable-next-line
     }, [])
 
+    console.log('***********************>', data);
 
     return (
         <>
@@ -76,7 +77,7 @@ const PurchasingCard = () => {
                             <li className="list-group-item d-flex justify-content-between lh-condensed">
                                 <div className='mt-2' >
 
-                                    <h6 className="my-0">{data.item_name}</h6>
+                                    <h6 className="my-0 text-primary">{data.item_name}</h6>
                                     <small className="text-muted">${data.item_price}</small>
                                 </div>
                                 <span>
@@ -85,26 +86,25 @@ const PurchasingCard = () => {
                             </li>
 
                             <li className="list-group-item d-flex justify-content-between bg-light">
-                                <div className="text-success">
-                                    <h6 className="my-0">Promo code</h6>
-                                    <small>Not Available</small>
+                                <div className="text-secondary">
+                                    <h6 className="my-0">Item Description</h6>
+                                    <small>{data.item_desc}</small>
                                 </div>
-                                <span className="text-success">-$0</span>
                             </li>
-                            <li className="list-group-item d-flex justify-content-between">
+                            <li className="list-group-item d-flex justify-content-between text-success">
                                 <span>Total (USD)</span>
                                 <strong>${data.item_price}</strong>
                             </li>
                         </ul>
 
-                        <div className="card p-2">
+                        {/* <div className="card p-2">
                             <div className="input-group">
                                 <input type="text" className="form-control" placeholder="Promo code" />
                                 <div className="input-group-append">
                                     <button type="submit" className="btn btn-secondary rounded-pill">Redeem</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="col-md-8 order-md-1">
                         <h4 className="mb-3">Billing address</h4>
@@ -179,5 +179,4 @@ const PurchasingCard = () => {
         </>
     )
 }
-
 export default PurchasingCard
