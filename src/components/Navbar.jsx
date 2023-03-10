@@ -8,6 +8,8 @@ const Navbar = () => {
     const [data, setData] = useState([])
     const [search, setSearch] = useState([])
 
+    const token = localStorage.getItem('token')
+
     const getCategory = () => {
 
         axios.get('http://127.0.0.1:8000/shop/category/')
@@ -20,13 +22,29 @@ const Navbar = () => {
             });
     }
 
+    const handleLogout = () => {
+        axios.post("http://127.0.0.1:8000/users/logout/", {
+            headers: {
+                Authorization: `Token ${localStorage.getItem('token')}`
+            }
+        })
+            .then(function (response) {
+                // Remove token from local storage
+                localStorage.removeItem('token');
+                alert("Logout Successfully!")
+            })
+            .catch(function (error) {
+                console.log("Error Occured");
+            });
+    }
+
     useEffect(() => {
         getCategory();
         // eslint-disable-next-line
 
 
     }, [])
-    
+
 
     return (
         <>
@@ -70,17 +88,36 @@ const Navbar = () => {
                                 })
                             }
 
-                            <li className="nav-item">
-                                <Link to={"/myorder"} style={{ textDecoration: "none" }}>
-                                    <a className="nav-link" href="/myorder">My Order</a>
-                                </Link>
-                            </li>
+                            {
+                                (token) ? <li className="nav-item">
+                                    <Link to={"/myorder"} style={{ textDecoration: "none" }}>
+                                        <a className="nav-link" href="/myorder">My Orders</a>
+                                    </Link>
+                                </li> : null
+
+                            }
+
                             <li className="nav-item">
                                 <Link to={"/contactus"} style={{ textDecoration: "none" }}>
                                     <a className="nav-link" href="/contactus">Contact</a>
                                 </Link>
                             </li>
+
                         </ul>
+                        {
+                            (token) ? <div className='d-flex' style={{ marginRight: "2%" }}>
+
+                                <button onClick={handleLogout} type='button' className="btn rounded-pill btn-sm btn-outline-danger">Logout</button>
+
+                            </div> :
+                                <div className='d-flex' style={{ marginRight: "2%" }}>
+                                    <Link to={"/login"} style={{ textDecoration: "none" }}>
+                                        <button type='button' className="btn rounded-pill btn-sm btn-outline-success">Login/Signup</button>
+                                    </Link>
+                                </div>
+                        }
+
+
                         <div className="d-flex" role="search">
                             <input className="form-control me-2" placeholder="Search" aria-label="Search" onChange={(e) => setSearch(e.target.value)} />
                             {

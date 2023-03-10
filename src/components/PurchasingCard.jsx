@@ -29,10 +29,12 @@ const PurchasingCard = () => {
             });
     }
 
-    function submitAddress(e) {
-        e.preventDefault();
+    function submitAddress() {
+        // e.preventDefault();
         axios.post('http://127.0.0.1:8000/shop/purchasing/', {
+
             order_item: data.id,
+            order_user: 11,
             first_name: firstName,
             last_name: lastName,
             phone_number: phone,
@@ -41,6 +43,11 @@ const PurchasingCard = () => {
             address2: address2,
             city: city,
             zip_code: zip,
+        }).then(function (response) {
+            console.log("status:", response.data);
+        })
+        .catch(function (error) {
+            console.log("Error Occured");
         });
         setFirstName("");
         setLastName("");
@@ -167,7 +174,7 @@ const PurchasingCard = () => {
             </div>
             <div align='center' style={{ marginBottom: "5%" }}>
                 <hr className="mb-4" />
-                <Link to={"/invoice/"}>
+                <Link to={"/myorder/"}>
                     <button onClick={submitAddress} className="btn btn-primary btn-lg btn-block rounded-pill" >Continue to billing</button>
                 </Link>
             </div>

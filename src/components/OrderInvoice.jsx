@@ -1,16 +1,23 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 
-const OrderInvoice = () => { // Main Component Function
+const OrderInvoice = () => {
 
-
+  // Get the userId param from the URL.
+  const params = useParams();
   const [data, setData] = useState([])
+
 
 
   const getInvoice = () => {
 
-    axios.get('http://127.0.0.1:8000/shop/invoice/2/')
+    axios.get(`http://127.0.0.1:8000/shop/invoice/${params.id}/`, {
+      headers: {
+        Authorization: `Token ${localStorage.getItem('token')}`
+      }
+    })
       .then(function (response) {
         setData(response.data)
       })
@@ -29,11 +36,20 @@ const OrderInvoice = () => { // Main Component Function
 
   let status;
 
-  if (data.delivered == true) {
+  if (data.delivered === true) {
     status = "Delivered"
   }
   else {
     status = "Not Delivered"
+  }
+
+  if (data.order_updated_at) {
+
+    const dateTime = data.order_updated_at;
+    let year = dateTime.slice(0, 4);
+    let month = dateTime.slice(5, 7);
+    let day = dateTime.slice(8, 10);
+    var modifiedDate = day + "-" + month + "-" + year;
   }
 
 
@@ -53,7 +69,7 @@ const OrderInvoice = () => { // Main Component Function
                   <div className="row">
                     <div className="col mb-3">
                       <p className="small text-muted mb-1">Date</p>
-                      <p>{data.order_updated_at}</p>
+                      <p>{modifiedDate}</p>
                     </div>
                     <div className="col mb-3">
                       <p className="small text-muted mb-1">Order No.</p>
@@ -64,20 +80,20 @@ const OrderInvoice = () => { // Main Component Function
                   <div className="mx-n5 px-5 py-4" style={{ backgroundColor: "#f2f2f2" }}>
                     <div className="row">
                       <div className="col-md-8 col-lg-9">
-                        <p>{data.order_item}</p>
+                        <p><b>{data.order_item}</b></p>
                       </div>
                       <div className="col-md-4 col-lg-3">
                         <p>Rs {data.order_price}</p>
                       </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                       <div className="col-md-8 col-lg-9">
                         <p className="mb-0">Shipping</p>
                       </div>
                       <div className="col-md-4 col-lg-3">
                         <p className="mb-0">Rs 0</p>
                       </div>
-                    </div>
+                    </div> */}
                     <div className="row mt-3">
                       <div className="col-md-8 col-lg-9">
                         <p className="mb-0">Total Amount</p>
