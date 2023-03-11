@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import {API_BASE_URL} from '../config';
+
 
 const ItemCard = () => {
     const location = useLocation();
@@ -19,7 +21,7 @@ const ItemCard = () => {
         if (searchValue != null) {
             setTitle(`Search: "${searchValue}"`)
 
-            axios.get(`http://127.0.0.1:8000/shop/items?search=${searchValue}`)
+            axios.get(`${API_BASE_URL}shop/items?search=${searchValue}`)
                 .then(function (response) {
                     setData(response.data)
                 })
@@ -31,7 +33,7 @@ const ItemCard = () => {
         else {
             setTitle("Latest Products")
 
-            axios.get('http://127.0.0.1:8000/shop/items/')
+            axios.get(`${API_BASE_URL}shop/items/`)
                 .then(function (response) {
                     setData(response.data)
                 })

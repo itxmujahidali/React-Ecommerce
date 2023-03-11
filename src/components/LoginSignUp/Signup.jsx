@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import {API_BASE_URL} from '../../config'
+
 
 
 const Signup = () => {
-
-    const navigate = useNavigate();
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
@@ -17,7 +16,7 @@ const Signup = () => {
     const registerPost = (e) => {
         if (password1 === password2) {
             e.preventDefault();
-            axios.post('http://127.0.0.1:8000/users/register/', {
+            axios.post(`${API_BASE_URL}users/register/`, {
                 first_name: firstName,
                 last_name: lastName,
                 username: userName,

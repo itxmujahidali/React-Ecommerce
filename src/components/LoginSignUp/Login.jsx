@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {API_BASE_URL} from '../../config'
 
 
 const Login = () => {
@@ -14,7 +15,7 @@ const Login = () => {
     async function loginPost(e) {
 
         e.preventDefault();
-        axios.post('http://127.0.0.1:8000/users/login/', {
+        axios.post(`${API_BASE_URL}users/login/`, {
 
             username: userName,
             password: password,
@@ -29,7 +30,7 @@ const Login = () => {
             
         })
             .catch(error => {
-                console.error(error);
+                alert("Wrong Credentials!")
             });
 
         setUserName("");

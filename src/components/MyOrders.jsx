@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {API_BASE_URL} from '../config';
 
 
 
@@ -10,7 +11,7 @@ const MyOrders = () => {
     const [data, setData] = useState([])
 
     const getData = () => {
-        axios.get('http://127.0.0.1:8000/shop/myorder/', {
+        axios.get(`${API_BASE_URL}shop/myorder/`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`
             }
@@ -26,7 +27,7 @@ const MyOrders = () => {
     console.log('********************************>', data);
 
     const handleDelete = (id) => {
-        axios.delete(`http://127.0.0.1:8000/shop/myorder/${id}/`,{
+        axios.delete(`${API_BASE_URL}shop/myorder/${id}/`,{
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`
             }

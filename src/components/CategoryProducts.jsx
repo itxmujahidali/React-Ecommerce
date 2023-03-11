@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {API_BASE_URL} from '../config';
 
 const CategoryProducts = () => {
     // Get ID from URL
@@ -8,7 +9,7 @@ const CategoryProducts = () => {
     const [data, setData] = useState([]);
 
     const getItems = () => {
-        axios.get(`http://127.0.0.1:8000/shop/category-filter?category__cat_name=${params.cat_name}&sub_name=${params.sub_cat}`)
+        axios.get(`${API_BASE_URL}shop/category-filter?category__cat_name=${params.cat_name}&sub_name=${params.sub_cat}`)
             .then(function (response) {
                 setData(response.data)
             })
@@ -20,7 +21,7 @@ const CategoryProducts = () => {
     useEffect(() => {
         getItems();
         // eslint-disable-next-line
-        console.log('*******************> Change Paramas');
+        // console.log('*******************> Change Paramas');
 
 
     }, [params])

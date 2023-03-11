@@ -1,6 +1,8 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {API_BASE_URL} from '../config';
+
 
 
 const PurchasingCard = () => {
@@ -24,7 +26,7 @@ const PurchasingCard = () => {
 
 
     const getItems = () => {
-        axios.get(`http://127.0.0.1:8000/shop/items/${params.id}/`)
+        axios.get(`${API_BASE_URL}shop/items/${params.id}/`)
             .then(function (response) {
                 setData(response.data)
             })
@@ -87,7 +89,7 @@ const PurchasingCard = () => {
         if (isNumeric(phone)) { //using (isNumeric) helper function
 
             // e.preventDefault();
-            axios.post('http://127.0.0.1:8000/shop/purchasing/', {
+            axios.post(`${API_BASE_URL}shop/purchasing/`, {
                 order_item: data.id,
                 first_name: firstName,
                 last_name: lastName,

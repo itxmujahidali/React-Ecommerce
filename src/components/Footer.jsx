@@ -14,7 +14,7 @@ const Footer = () => {
                     </svg>
                     </span>
                     by 
-                    <a style={{ textDecoration: "none", hover: "red" }} href="https://itxmujahidali.github.io"> Mujahid Ali</a>
+                    <a style={{ textDecoration: "none", hover: "red" }} href="https://itxmujahidali.github.io" target={"_blank"}> Mujahid Ali</a>
                 </li>
             </footer>
         </>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import {API_BASE_URL} from '../config';
 
 
 const OrderInvoice = () => {
@@ -13,7 +14,7 @@ const OrderInvoice = () => {
 
   const getInvoice = () => {
 
-    axios.get(`http://127.0.0.1:8000/shop/invoice/${params.id}/`, {
+    axios.get(`${API_BASE_URL}shop/invoice/${params.id}/`, {
       headers: {
         Authorization: `Token ${localStorage.getItem('token')}`
       }

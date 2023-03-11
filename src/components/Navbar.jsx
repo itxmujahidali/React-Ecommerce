@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import {API_BASE_URL} from '../config';
 
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ const Navbar = () => {
 
     const getCategory = () => {
 
-        axios.get('http://127.0.0.1:8000/shop/category/')
+        axios.get(`${API_BASE_URL}shop/category/`)
             .then(function (response) {
                 setData(response.data)
 
@@ -25,7 +26,7 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        axios.post("http://127.0.0.1:8000/users/logout/", {
+        axios.post(`${API_BASE_URL}users/logout/`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`
             }
