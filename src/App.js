@@ -15,16 +15,22 @@ import CategoryProducts from './components/CategoryProducts';
 
 
 const withAuth = (Component) => {
+  let isAuthenticated;
   const token = localStorage.getItem('token');
-  var isAuthenticated;
-  (token)? isAuthenticated = true : isAuthenticated = false;
-  
+  (token) ? isAuthenticated = true : isAuthenticated = false;
+
   const AuthRoute = (props) => {
     if (isAuthenticated) {
+
       return <Component {...props} />;
+   
     } else {
-      // return <Route to="/login" />;
-      return <Navigate to="/login" />
+      
+      document.location.reload();
+      setTimeout(()=> ((isAuthenticated)? <Component {...props} />
+      :<Navigate to="/login" />
+      ), 700)
+   
     }
   }
 
@@ -35,14 +41,8 @@ const withAuth = (Component) => {
 
 
 function App() {
-  // const ProtectedNavbar = withAuth(Navbar);
-  // const ProtectedCarousel = withAuth(Carousel);
-  // const ProtectedItemCard = withAuth(ItemCard);
-  // const ProtectedPurchasingCard = withAuth(PurchasingCard);
   const ProtectedOrderInvoice = withAuth(OrderInvoice);
   const ProtectedMyOrders = withAuth(MyOrders);
-  // const ProtectedContact = withAuth(Contact);
-  // const ProtectedCategoryProducts = withAuth(CategoryProducts);
 
   return (
     <>

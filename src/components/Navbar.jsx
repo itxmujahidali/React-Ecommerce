@@ -7,6 +7,7 @@ const Navbar = () => {
 
     const [data, setData] = useState([])
     const [search, setSearch] = useState([])
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
 
     const token = localStorage.getItem('token')
@@ -32,7 +33,8 @@ const Navbar = () => {
             .then(function (response) {
                 // Remove token from local storage
                 localStorage.removeItem('token');
-                alert("Logout Successfully!")
+                setIsLoggedIn(false)
+                alert("Logout Successfully!");
                 navigate("/login");
             })
             .catch(function (error) {
@@ -42,19 +44,24 @@ const Navbar = () => {
 
     useEffect(() => {
         getCategory();
+        setIsLoggedIn(!!token); // set the login status based on the presence of the token
         // eslint-disable-next-line
+    }, []);
 
-
-    }, [])
+    useEffect(() => {
+        setIsLoggedIn(!!token); // update the login status when the token changes
+    }, [token]);
 
 
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
+                <Link to={"/"}>
                     <a className="navbar-brand" href="/">
                         <img src="https://thedownloadworld.com/web/wp-content/uploads/2021/05/shop.png" alt="Bootstrap" width="54" height="36" />
                     </a>
+                    </Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -91,11 +98,13 @@ const Navbar = () => {
                             }
 
                             {
-                                (token) ? <li className="nav-item">
-                                    <Link to={"/myorder"} style={{ textDecoration: "none" }}>
-                                        <a className="nav-link" href="/myorder">My Orders</a>
+                                (isLoggedIn) ? <li className="nav-item">
+                                    <Link to={"/myorder/"} style={{ textDecoration: "none" }}>
+                                        <a className="nav-link">My Orders</a>
                                     </Link>
-                                </li> : null
+                                </li> : <li className="nav-item">
+                                    <a className="nav-link" href="#" onClick={ ()=> alert('You must be login first!')}>My Orders</a>
+                                </li>
 
                             }
 

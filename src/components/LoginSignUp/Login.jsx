@@ -7,7 +7,7 @@ const Login = () => {
 
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [isAuth, setIsAuth] = useState("")
+    // const [isAuth, setIsAuth] = useState("")
     const navigate = useNavigate(); // useNavigate hook
 
 
@@ -22,11 +22,11 @@ const Login = () => {
         }).then(response => {
             localStorage.clear();
             localStorage.setItem("token", response.data.token)
-            setIsAuth(response.data.token)
+            // setIsAuth(response.data.token)
             setTimeout(() => {
                 navigate('/', { replace: true }); // redirect to home page and replace the current entry in the history stack
             }, 1000); // wait for 2 seconds
-
+            
         })
             .catch(error => {
                 console.error(error);
@@ -42,6 +42,7 @@ const Login = () => {
     return (
         <>
             <div className='container' style={{ marginTop: "10%", width: "45%" }}>
+                <h6 align="center"><a href='/'>Visit site without login?</a> </h6>
                 <h1 align="center">LOGIN </h1>
                 <div className="mb-3 mt-2">
                     <label for="exampleInputEmail1" className="form-label">username</label>
