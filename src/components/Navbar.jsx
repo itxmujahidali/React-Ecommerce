@@ -26,7 +26,7 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        axios.post(`${API_BASE_URL}users/logout/`, {
+        axios.post(`${API_BASE_URL}users/logout/`, {}, {
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`
             }

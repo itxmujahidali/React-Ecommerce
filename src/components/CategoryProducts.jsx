@@ -21,9 +21,6 @@ const CategoryProducts = () => {
     useEffect(() => {
         getItems();
         // eslint-disable-next-line
-        // console.log('*******************> Change Paramas');
-
-
     }, [params])
 
     return (

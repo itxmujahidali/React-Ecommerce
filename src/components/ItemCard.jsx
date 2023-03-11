@@ -13,7 +13,6 @@ const ItemCard = () => {
 
     const [data, setData] = useState([]);
     const [title, setTitle] = useState()
-    // console.log('----------------------->', params);
 
 
     const getItems = () => {
@@ -49,7 +48,6 @@ const ItemCard = () => {
     useEffect(() => {
         getItems();
         // eslint-disable-next-line
-        console.log('*******************> UseEffect');
     }, [])
 
 

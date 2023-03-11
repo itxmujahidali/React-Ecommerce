@@ -31,22 +31,22 @@ const Contact = () => {
 
     return (
         <>
-            <div className='container mt-5'>
+            <div className='container mt-5' key={email}>
                 <h1 align='center' className='mt-5 mb-5'>Contact Us</h1>
                 <div className="form-group col-md-4" style={{ float: "left", marginLeft: "12%" }}>
-                    <label for="inputEmail4">
+                    <label htmlFor="inputEmail4">
                         <b>Name</b>
                     </label>
                     <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="form-control" placeholder="Name" />
                 </div>
                 <div className="form-group col-md-4" style={{ float: "left", marginLeft: "16%" }}>
-                    <label for="inputEmail4">
+                    <label htmlFor="inputEmail4">
                         <b>Email</b>
                     </label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Email" />
                 </div>
                 <div className="form-group col-md-10 mt-4 mb-5" style={{ float: "left", marginLeft: "12%" }}>
-                    <label for="inputEmail4">
+                    <label htmlFor="inputEmail4">
                         <b>Message</b>
                     </label>
                     <textarea value={message} onChange={(e) => setMessage(e.target.value)} className="form-control" placeholder="Enter Your Message" />

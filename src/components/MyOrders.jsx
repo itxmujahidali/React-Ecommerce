@@ -24,8 +24,6 @@ const MyOrders = () => {
             });
     }
 
-    console.log('********************************>', data);
-
     const handleDelete = (id) => {
         axios.delete(`${API_BASE_URL}shop/myorder/${id}/`,{
             headers: {
